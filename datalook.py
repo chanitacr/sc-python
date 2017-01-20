@@ -12,12 +12,12 @@ def analyse(filename, outfile=None):
     data = numpy.loadtxt(fname=filename, delimiter=',')
     
     # Create a wide figure to hold the subplots
-    fig = matplotlib.pyplot.figure (figsize=(10.0, 3.0))
+    fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
     
     # Create diferrent boxis with in the main frame "place holders for plots"
-    subplot1 = fig.add_subplot(1,3,1)
-    subplot2 = fig.add_subplot(1,3,2)
-    subplot3 = fig.add_subplot(1,3,3)
+    subplot1 = fig.add_subplot(1, 3, 1)
+    subplot2 = fig.add_subplot(1, 3, 2)
+    subplot3 = fig.add_subplot(1, 3, 3)
 
     subplot1.set_ylabel('average')
     subplot1.plot(numpy.mean(data, axis=0))
@@ -35,6 +35,7 @@ def analyse(filename, outfile=None):
         matplotlib.pyplot.savefig(outfile)
 
 def detect_problems(filename):
+    
     """Some of our temperature files have problems, check for these
     This funtion reads a file (filename argument) and reports on odd looking
     maxima and minima that add up to zero. This seems to happen when the 
@@ -43,9 +44,9 @@ def detect_problems(filename):
     """
     data = numpy.loadtxt(fname=filename, delimiter=',')
     
-    if numpy.max(data, axis = 0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
+    if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
         print("Suspicios looking data maxima")
-    elif numpy.sum (numpy.min(data, axis=0)) == 0:
+    elif numpy.sum(numpy.min(data, axis=0)) == 0:
         print("Minima add up to zero")
     else:
         print("Data looks OK")
