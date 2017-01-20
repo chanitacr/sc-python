@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import sys
-import glob
+#import glob
 import numpy
 import matplotlib.pyplot
 
