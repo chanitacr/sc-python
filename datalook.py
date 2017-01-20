@@ -20,13 +20,13 @@ def analyse(filename, outfile=None):
     subplot3 = fig.add_subplot(1,3,3)
 
     subplot1.set_ylabel('average')
-    subplot1.plot (numpy.mean(data, axis=0))
+    subplot1.plot(numpy.mean(data, axis=0))
 
     subplot2.set_ylabel('minimum')
-    subplot2.plot (numpy.min(data, axis=0))
+    subplot2.plot(numpy.min(data, axis=0))
 
     subplot3.set_ylabel('maximum')
-    subplot3.plot (numpy.max(data, axis=0))
+    subplot3.plot(numpy.max(data, axis=0))
 
     #fig.tight_layout()
     if outfile is None:
@@ -34,9 +34,8 @@ def analyse(filename, outfile=None):
     else:
         matplotlib.pyplot.savefig(outfile)
 
-def detect_problems (filename):
+def detect_problems(filename):
     """Some of our temperature files have problems, check for these
-    
     This funtion reads a file (filename argument) and reports on odd looking
     maxima and minima that add up to zero. This seems to happen when the 
     sensors break.
@@ -44,16 +43,15 @@ def detect_problems (filename):
     """
     data = numpy.loadtxt(fname=filename, delimiter=',')
     
-    if numpy.max (data, axis = 0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
-        print ("Suspicios looking data maxima")
+    if numpy.max(data, axis = 0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
+        print("Suspicios looking data maxima")
     elif numpy.sum (numpy.min(data, axis=0)) == 0:
-        print ("Minima add up to zero")
+        print("Minima add up to zero")
     else:
-        print ("Data looks OK")
+        print("Data looks OK")
 
 if __name__ == "__main__":
-    print ("Running ", sys.argv[0])
-    
-    print (sys.argv[1])
-    analyse (sys.argv[1], outfile=sys.argv[2])
-    detect_problems (sys.argv[1])
+    print("Running ", sys.argv[0])
+    print(sys.argv[1])
+    analyse(sys.argv[1], outfile=sys.argv[2])
+    detect_problems(sys.argv[1])
